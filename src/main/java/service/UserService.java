@@ -17,7 +17,7 @@ public class UserService implements IDao<User> {
 
 	@Override
 	public boolean create(User o) {
-		String sql = "insert into user values (null, ?, ?,?)";
+		String sql = "insert into users values (null, ?, ?,?)";
 		try {
 			PreparedStatement ps = Connexion.getInstane().getConnection().prepareStatement(sql);
 			ps.setString(1, o.getName());
@@ -36,7 +36,7 @@ public class UserService implements IDao<User> {
 	public boolean login(String username, String password) {
 
 		try {
-			String sql = "select id,name,username,password from user where username  = ? and password= ?";
+			String sql = "select id,name,username,password from users where username  = ? and password= ?";
 			PreparedStatement ps = Connexion.getInstane().getConnection().prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -56,7 +56,7 @@ public class UserService implements IDao<User> {
 
 	@Override
 	public boolean delete(User o) {
-		String sql = "delete from user where id  = ?";
+		String sql = "delete from users where id  = ?";
 		try {
 			PreparedStatement ps = Connexion.getInstane().getConnection().prepareStatement(sql);
 			ps.setInt(1, o.getId());
@@ -72,7 +72,7 @@ public class UserService implements IDao<User> {
 
 	@Override
 	public boolean update(User o) {
-		String sql = "update user set name  = ? ,username = ?,password=? where id  = ?";
+		String sql = "update users set name  = ? ,username = ?,password=? where id  = ?";
 		try {
 			PreparedStatement ps = Connexion.getInstane().getConnection().prepareStatement(sql);
 			ps.setString(1, o.getName());
@@ -92,7 +92,7 @@ public class UserService implements IDao<User> {
 	@Override
 	public User findById(int id) {
 		/// User u = null;
-		String sql = "select * from user where id  = ?";
+		String sql = "select * from users where id  = ?";
 		try {
 			PreparedStatement ps = Connexion.getInstane().getConnection().prepareStatement(sql);
 			ps.setInt(1, id);
